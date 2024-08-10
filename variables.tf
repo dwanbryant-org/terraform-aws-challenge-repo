@@ -9,10 +9,6 @@ variable "account_number" {
     type = string
 }
 
-variable "organization_id" {
-    description = "organization_id"
-    type = string
-}
 
 variable "resource_prefix" {
   description = "Prefix for resource names."
