@@ -1,0 +1,60 @@
+name: Terraform Plan for PR
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  terraform-plan:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        id: tfplan
+        run: |
+            terraform plan -out=tfplan
+
+      - name: Show Terraform Plan
+        id: plan
+        run: terraform show -no-color -json tfplan > tfplan.json
+
+      - name: Upload Plan Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.event.pull_request.number }}-tf-plan
+          path: tfplan
+
+      - name: Comment on PR with Terraform Plan Summary
+        uses: liatrio/terraform-change-pr-commenter@v1.5.0
+        with:
+          json-file: tfplan.json
+          include-plan-job-summary: 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
