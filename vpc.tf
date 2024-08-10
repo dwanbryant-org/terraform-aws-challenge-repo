@@ -48,22 +48,15 @@ module "vpc_nfw" {
 
   delete_protection = false
 
-  cidr = var.vpc_cidr
+  cidr = local.vpc_cidr
 
   azs = [
     data.aws_availability_zones.available.names[0], 
     data.aws_availability_zones.available.names[1]
   ]
 
-  public_subnets = {
-    "subnet1" = var.public_subnet_a_cidr,
-    "subnet2" = var.public_subnet_b_cidr
-  }
-
-  private_subnets = {
-    "subnet3" = var.private_subnet_a_cidr,
-    "subnet4" = var.private_subnet_b_cidr
-  }
+  public_subnets = local.public_subnets
+  private_subnets =local.private_subnets
 
   public_subnet_suffix = "public"
 
