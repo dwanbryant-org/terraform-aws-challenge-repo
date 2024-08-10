@@ -57,6 +57,10 @@ module "vpc_nfw" {
 
   public_subnets = local.public_subnets
   private_subnets =local.private_subnets
+  private_subnet_tags = {
+    "0" = "Private"
+    "1" = "Private"
+  }
 
   public_subnet_suffix = "public"
 
