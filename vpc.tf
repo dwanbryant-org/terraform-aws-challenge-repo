@@ -2,6 +2,10 @@ provider "aws" {
   region = var.aws_region
 }
 
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
 module "vpc_nfw" {
   source =  "github.com/Coalfire-CF/terraform-aws-vpc-nfw"
 
