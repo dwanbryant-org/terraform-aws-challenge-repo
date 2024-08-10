@@ -48,7 +48,7 @@ module "vpc_nfw" {
 
   delete_protection = false
 
-  cidr = local.vpc_cidr
+  cidr = var.vpc_cidr
 
   azs = [
     data.aws_availability_zones.available.names[0], 
