@@ -1,8 +1,9 @@
 name: Terraform Apply on Merge
 
 on:
-  pull_request_review:
-    types: [submitted]
+  push:
+    branches: 
+      - dev
 
 jobs:
   terraform-apply:
