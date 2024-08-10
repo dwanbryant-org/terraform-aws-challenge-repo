@@ -83,5 +83,5 @@ module "vpc_nfw" {
     createdBy   = "terraform"
   }
 
-  depends_on = [ module.account-setup ]
+#   depends_on = [ module.account-setup ]
 }
