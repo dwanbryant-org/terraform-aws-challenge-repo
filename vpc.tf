@@ -36,10 +36,13 @@ module "vpc_nfw" {
 
   flow_log_destination_type = "cloud-watch-logs"
   cloudwatch_log_group_retention_in_days = 30
+  cloudwatch_log_group_kms_key_id        = data.terraform_remote_state.day0.outputs.cloudwatch_kms_key_arn
 
   tags = {
     Owner       = var.resource_prefix
     Environment = "vpc"
     createdBy   = "terraform"
   }
+
+  depends_on = [ module.account-setup ]
 }
