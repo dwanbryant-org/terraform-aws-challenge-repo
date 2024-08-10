@@ -16,11 +16,11 @@ variable "resource_prefix" {
   default     = "coalfire"
 }
 
-# variable "vpc_cidr" {
-#   description = "The CIDR block for the VPC."
-#   type        = string
-#   default     = "10.1.0.0/16"
-# }
+variable "vpc_cidr" {
+  description = "The CIDR block for the VPC."
+  type        = string
+  default     = "10.1.0.0/16"
+}
 
 # variable "public_subnet_a_cidr" {
 #   description = "The CIDR block for the first public subnet."

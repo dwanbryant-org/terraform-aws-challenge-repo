@@ -1,5 +1,4 @@
 locals {
-   vpc_cidr = "10.1.0.0/16"
    public_subnets = {
     "subnet1" = "10.1.0.0/24",
     "subnet2" = "10.1.1.0/24"
