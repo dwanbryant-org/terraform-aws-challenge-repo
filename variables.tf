@@ -4,6 +4,16 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "account_number" {
+    description = "Account number"
+    type = string
+}
+
+variable "organization_id" {
+    description = "organization_id"
+    type = string
+}
+
 variable "resource_prefix" {
   description = "Prefix for resource names."
   type        = string
