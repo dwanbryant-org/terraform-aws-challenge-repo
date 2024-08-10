@@ -1,11 +1,12 @@
 name: Terraform Apply on Merge
 
 on:
-  pull_request_review:
-    types: [submitted]
+  issue_comment:
+    types: [created]
 
 jobs:
   terraform-apply:
+    if: github.event.issue.pull_request
     runs-on: ubuntu-latest
 
     permissions: write-all
