@@ -13,7 +13,7 @@ module "ec2_test" {
 
   name = var.instance_name
 
-  ami               = "ami-0468ac5f57c53fbad"
+  ami               = "ami-07472131ec292b5da"
   ec2_instance_type = var.instance_type
   instance_count    = 1
 
@@ -30,7 +30,7 @@ module "ec2_test" {
   # Security Group Rules
    ingress_rules = {
     "ssh" = {
-      ip_protocol = "ssh"
+      ip_protocol = "tcp"
       from_port   = "22"
       to_port     = "22"
       cidr_ipv4   = "0.0.0.0/0"
@@ -41,8 +41,6 @@ module "ec2_test" {
   egress_rules = {
     "allow_all_egress" = {
       ip_protocol = "-1"
-      from_port   = "0"
-      to_port     = "0"
       cidr_ipv4   = "0.0.0.0/0"
       description = "Allow all egress"
     }
