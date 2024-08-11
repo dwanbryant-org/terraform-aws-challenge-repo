@@ -23,6 +23,7 @@ module "ec2_test" {
   ec2_key_pair    = var.key_name
   ebs_kms_key_arn = aws_kms_key.ebs_key.arn
   ebs_optimized = false
+  associate_public_ip = true
   
   # Storage
   root_volume_size = 20
