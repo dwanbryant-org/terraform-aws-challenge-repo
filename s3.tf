@@ -4,19 +4,23 @@ module "images_bucket" {
 
   bucket = "bryant-coalfire-images"
 
-  lifecycle_rule = {
-    id      = "archive-memes"
-    enabled = true
+  lifecycle_rule = [
+    {
+      id      = "archive-memes"
+      enabled = true
 
-    filter {
-      prefix = "Memes/"
-    }
+      filter = {
+        prefix = "Memes/"
+      }
 
-    transition {
-      days          = 90
-      storage_class = "GLACIER"
+      transition = [
+        {
+          days          = 90
+          storage_class = "GLACIER"
+        }
+      ]
     }
-  }
+  ]
 
   tags = {
     Name        = "images"
@@ -28,30 +32,37 @@ module "logs_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "4.1.2"
 
-  bucket = "bryant-coalfire-logs"
+  bucket = "logs"
 
-  lifecycle_rule = {
-    id      = "archive-active"
-    enabled = true
+  lifecycle_rule = [
+    {
+      id      = "archive-active"
+      enabled = true
 
-    filter {
-      prefix = "Active/"
-    }
+      filter = {
+        prefix = "Active/"
+      }
 
-    transition {
-      days          = 90
-      storage_class = "GLACIER"
-    }
+      transition = [
+        {
+          days          = 90
+          storage_class = "GLACIER"
+        }
+      ]
+    },
+    {
+      id      = "delete-inactive"
+      enabled = true
 
-    filter {
-      prefix = "Inctive/"
-    }
+      filter = {
+        prefix = "Inactive/"
+      }
 
-    expiration {
+      expiration = {
         days = 90
+      }
     }
-  }
-
+  ]
 
   tags = {
     Name        = "logs"
