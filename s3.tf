@@ -32,7 +32,7 @@ module "logs_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "4.1.2"
 
-  bucket = "logs"
+  bucket = "bryant-coalfire-logs"
 
   lifecycle_rule = [
     {
