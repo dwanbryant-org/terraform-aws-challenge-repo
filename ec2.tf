@@ -57,6 +57,8 @@ module "ec2_test" {
       description = "Allow all egress"
     }
   }
-
+  global_tags = {
+    managed = "Terraform"
+  }
     depends_on = [ aws_kms_key.ebs_key, aws_kms_alias.ebs_key_alias ]
 }
