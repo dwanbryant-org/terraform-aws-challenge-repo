@@ -30,14 +30,39 @@ data "aws_iam_policy_document" "default_key_policy" {
     principals {
       type        = "AWS"
       identifiers = [
-        # Add the ARN of the IAM role, user, or service that should be allowed to use the key
-        "arn:aws:iam::${var.account_number}:role/cicd",
+        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/cicd",
       ]
     }
 
-    resources = [
-      "*"
+    resources = ["*"]
+  }
+
+  statement {
+    actions = [
+      "kms:Create*",
+      "kms:Describe*",
+      "kms:Enable*",
+      "kms:List*",
+      "kms:Put*",
+      "kms:Update*",
+      "kms:Revoke*",
+      "kms:Disable*",
+      "kms:Get*",
+      "kms:Delete*",
+      "kms:TagResource",
+      "kms:UntagResource",
+      "kms:ScheduleKeyDeletion",
+      "kms:CancelKeyDeletion",
     ]
+
+    principals {
+      type        = "AWS"
+      identifiers = [
+        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/cicd",
+      ]
+    }
+
+    resources = ["*"]
   }
 }
 
