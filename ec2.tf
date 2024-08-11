@@ -18,7 +18,7 @@ module "ec2_test" {
   instance_count    = 1
 
   vpc_id = module.vpc_nfw.vpc_id
-  subnet_ids = [subnet-06b28c6b871aae790]
+  subnet_ids = ["subnet-06b28c6b871aae790"]
 
   ec2_key_pair    = var.key_name
   ebs_kms_key_arn = aws_kms_key.ebs_key.arn
@@ -32,7 +32,7 @@ module "ec2_test" {
       ip_protocol = "tcp"
       from_port   = "22"
       to_port     = "22"
-      cidr_ipv4   = ["0.0.0.0/0"]
+      cidr_ipv4   = "0.0.0.0/0"
       description = "SSH"
     }
   }
