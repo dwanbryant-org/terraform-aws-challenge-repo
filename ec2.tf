@@ -24,12 +24,12 @@ module "ec2_test" {
 
   name = var.instance_name
 
-  ami               = data.redhat_ami.ami.id
-  ec2_instance_type = var.instance_size
+  ami               = data.aws_ami.redhat_ami.id
+  ec2_instance_type = var.instance_type
   instance_count    = 1
 
-  vpc_id = module.vpc_nfw.id
-  subnet_ids = [module.vpc_nfw.subnet.private_subnets[1].id]
+  vpc_id = module.vpc_nfw.default_vpc_id
+  subnet_ids = [module.vpc_nfw.private_subnets[1].id]
 
   ec2_key_pair    = var.key_name
   ebs_kms_key_arn = aws_kms_key.ebs_key.arn
