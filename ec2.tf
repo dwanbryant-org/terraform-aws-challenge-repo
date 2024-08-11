@@ -13,7 +13,7 @@ module "ec2_test" {
 
   name = var.instance_name
 
-  ami               = "ami-07472131ec292b5da"
+  ami               = "ami-036c2987dfef867fb"
   ec2_instance_type = var.instance_type
   instance_count    = 1
 
