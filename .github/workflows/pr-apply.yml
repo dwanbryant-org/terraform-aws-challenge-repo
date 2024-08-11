@@ -36,8 +36,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: pr-plan.yml
-          pr: ${{ github.event.issue.pull_request.number }}
-          name: ${{ github.event.issue.pull_request.number }}-tf-plan
+          pr: ${{ github.event.issue.number }}
+          name: ${{ github.event.issue.number }}-tf-plan
           path: .
 
       - name: Terraform Apply
