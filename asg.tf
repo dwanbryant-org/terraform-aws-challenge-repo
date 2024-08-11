@@ -1,8 +1,13 @@
+resource "aws_iam_instance_profile" "asg_profile"{
+    name = "asg-profile"
+    role = aws_iam_role.asg_role.name
+}
+
 resource "aws_launch_template" "app" {
   name = "app-template"
 
   iam_instance_profile {
-    name = aws_iam_role.asg_role.name
+    name = aws_iam_instance_profile.asg_profile.name
   }
 
   block_device_mappings {
