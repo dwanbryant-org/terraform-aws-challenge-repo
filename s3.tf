@@ -4,7 +4,7 @@ module "images_bucket" {
 
   bucket = "images"
 
-  lifecycle_rules = [
+  lifecycle_rule = [
     {
       id      = "archive-memes"
       enabled = true
@@ -34,7 +34,7 @@ module "logs_bucket" {
 
   bucket = "logs"
 
-  lifecycle_rules = [
+  lifecycle_rule = [
     {
       id      = "archive-active"
       enabled = true
