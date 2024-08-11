@@ -28,8 +28,8 @@ module "ec2_test" {
   ec2_instance_type = var.instance_type
   instance_count    = 1
 
-  vpc_id = module.vpc_nfw.default_vpc_id
-  subnet_ids = [module.vpc_nfw.private_subnets[1].id]
+  vpc_id = module.vpc_nfw.vpc_id
+  subnet_ids = [module.vpc_nfw.private_subnets[1]]
 
   ec2_key_pair    = var.key_name
   ebs_kms_key_arn = aws_kms_key.ebs_key.arn
