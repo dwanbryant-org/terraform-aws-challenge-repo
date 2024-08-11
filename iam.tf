@@ -22,7 +22,7 @@ resource "aws_iam_role" "asg_role" {
         {
           Action = ["s3:GetObject"]
           Effect = "Allow"
-          Resource = "${module.images_bucket.this_s3_bucket_arn}/*"
+          Resource = "${module.images_bucket.bucket_arn}/*"
         }
       ]
     })
@@ -53,7 +53,7 @@ resource "aws_iam_role" "logs_role" {
         {
           Action = ["s3:PutObject"]
           Effect = "Allow"
-          Resource = "${module.logs_bucket.this_s3_bucket_arn}/*"
+          Resource = "${module.logs_bucket.bucket_arn}/*"
         }
       ]
     })
