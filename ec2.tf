@@ -1,14 +1,3 @@
-data "aws_ami" "redhat_ami" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["RHEL--HVM-"]
-  }
-
-  owners = ["309956199498"]
-}
-
 resource "aws_kms_key" "ebs_key" {
   description             = "KMS key for EBS volume encryption"
   enable_key_rotation     = true
@@ -24,12 +13,12 @@ module "ec2_test" {
 
   name = var.instance_name
 
-  ami               = data.aws_ami.redhat_ami.id
+  ami               = "0468ac5f57c53fbad"
   ec2_instance_type = var.instance_type
   instance_count    = 1
 
   vpc_id = module.vpc_nfw.vpc_id
-  subnet_ids = [module.vpc_nfw.private_subnets[1]]
+  subnet_ids = [module.vpc_nfw.private_subnets["subnet-private-2"]]
 
   ec2_key_pair    = var.key_name
   ebs_kms_key_arn = aws_kms_key.ebs_key.arn
