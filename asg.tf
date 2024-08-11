@@ -30,7 +30,7 @@ resource "aws_autoscaling_group" "app" {
   desired_capacity     = 2
   max_size             = 6
   min_size             = 2
-  vpc_zone_identifier  = module.vpc_nfw.private_subnets
+  vpc_zone_identifier  = values(module.vpc_nfw.private_subnets)
   launch_template {
     id      = aws_launch_template.app.id
     version = "$Latest"

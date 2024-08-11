@@ -3,7 +3,7 @@ resource "aws_lb" "app_lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.lb_sg.id]
-  subnets            = module.vpc_nfw.public_subnets
+  subnets            = values(module.vpc_nfw.public_subnets)
 }
 
 resource "aws_lb_target_group" "app_tg" {
