@@ -24,7 +24,7 @@ resource "aws_launch_template" "app" {
               EOF
   )
 
-  security_group_names = [aws_security_group.asg_sg.name]
+  vpc_security_group_ids = [aws_security_group.asg_sg.id]
 }
 
 resource "aws_autoscaling_group" "app" {
