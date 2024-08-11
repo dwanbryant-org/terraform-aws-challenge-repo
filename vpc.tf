@@ -2,8 +2,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-data "aws_caller_identity" "current" {}
-
 data "aws_availability_zones" "available" {
   state = "available"
 }
@@ -32,7 +30,7 @@ data "aws_iam_policy_document" "default_key_policy" {
     principals {
       type        = "AWS"
       identifiers = [
-        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/cicd",
+        "logs.us-east-1.amazonaws.com",
       ]
     }
 
