@@ -26,7 +26,7 @@ module "images_bucket" {
 
 module "logs_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "latest"  # Use the latest version
+  version = "4.1.2"
 
   bucket = "bryant-coalfire-logs"
 
