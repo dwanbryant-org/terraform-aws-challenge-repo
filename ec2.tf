@@ -29,8 +29,8 @@ module "ec2_test" {
 
   # Security Group Rules
    ingress_rules = {
-    "rdp" = {
-      ip_protocol = "tcp"
+    "ssh" = {
+      ip_protocol = "ssh"
       from_port   = "22"
       to_port     = "22"
       cidr_ipv4   = "0.0.0.0/0"
