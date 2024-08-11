@@ -1,5 +1,5 @@
 aws_region             = "us-east-1"
-resource_prefix        = "company"
+resource_prefix        = "coalfire"
 vpc_cidr               = "10.1.0.0/16"
 # public_subnet_a_cidr   = "10.1.0.0/24"
 # public_subnet_b_cidr   = "10.1.1.0/24"

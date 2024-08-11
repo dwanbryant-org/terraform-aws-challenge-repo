@@ -6,6 +6,8 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
+data "aws_caller_identity" "current" {}
+
 resource "aws_kms_key" "cloudwatch_key" {
   description             = "KMS key for CloudWatch log group encryption"
   enable_key_rotation     = true
@@ -28,16 +30,39 @@ data "aws_iam_policy_document" "default_key_policy" {
     ]
 
     principals {
+      type        = "Service"
+      identifiers = [ "logs.us-east-1.amazonaws.com"]
+    }
+
+    resources = ["*"]
+  }
+
+  statement {
+    actions = [
+      "kms:Create*",
+      "kms:Describe*",
+      "kms:Enable*",
+      "kms:List*",
+      "kms:Put*",
+      "kms:Update*",
+      "kms:Revoke*",
+      "kms:Disable*",
+      "kms:Get*",
+      "kms:Delete*",
+      "kms:TagResource",
+      "kms:UntagResource",
+      "kms:ScheduleKeyDeletion",
+      "kms:CancelKeyDeletion",
+    ]
+
+    principals {
       type        = "AWS"
       identifiers = [
-        # Add the ARN of the IAM role, user, or service that should be allowed to use the key
-        "arn:aws:iam::${var.account_number}:role/cicd",
+        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/cicd",
       ]
     }
 
-    resources = [
-      "*"
-    ]
+    resources = ["*"]
   }
 }
 
