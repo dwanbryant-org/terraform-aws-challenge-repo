@@ -30,10 +30,8 @@ data "aws_iam_policy_document" "default_key_policy" {
     ]
 
     principals {
-      type        = "AWS"
-      identifiers = [
-        "logs.us-east-1.amazonaws.com",
-      ]
+      type        = "Service"
+      identifiers = [ "logs.us-east-1.amazonaws.com"]
     }
 
     resources = ["*"]
