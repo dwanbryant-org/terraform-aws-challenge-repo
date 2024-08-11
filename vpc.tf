@@ -6,6 +6,8 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
+data "aws_caller_identity" "current" {}
+
 resource "aws_kms_key" "cloudwatch_key" {
   description             = "KMS key for CloudWatch log group encryption"
   enable_key_rotation     = true
