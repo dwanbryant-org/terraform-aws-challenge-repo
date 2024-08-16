@@ -1,11 +1,12 @@
 name: Terraform Apply on Merge
 
 on:
-  pull_request_review:
-    types: [submitted]
+  issue_comment:
+    types: [created]
 
 jobs:
   terraform-apply:
+    if: github.event.issue.pull_request
     runs-on: ubuntu-latest
 
     permissions: write-all
@@ -35,9 +36,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: pr-plan.yml
-          pr: ${{ github.event.pull_request.number }}
-          name: ${{ github.event.pull_request.number }}-tf-plan
+          pr: ${{ github.event.issue.number }}
+          name: ${{ github.event.issue.number }}-tf-plan
           path: .
 
       - name: Terraform Apply
-        run: terraform apply tfplan
+        run: terraform destroy tfplan

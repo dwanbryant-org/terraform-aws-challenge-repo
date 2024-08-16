@@ -9,6 +9,21 @@ variable "account_number" {
     type = string
 }
 
+variable "key_name" {
+    description = "Account number"
+    type = string
+}
+
+
+variable "instance_name" {
+  description = "Name of the instance"
+  type        = string
+}
+
+variable "instance_type" {
+  description = "type of the instance"
+  type        = string
+}
 
 variable "resource_prefix" {
   description = "Prefix for resource names."
