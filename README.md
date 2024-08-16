@@ -26,6 +26,7 @@ The architecture consists of the following components:
   - An IAM role for all EC2 instances to write logs to the logs S3 bucket.
 - *Security Groups* configured to allow necessary traffic for HTTP, HTTPS, and SSH access.
 
+
 ## Architecture Diagram
 ![Architecture](documentation/architecture.jpg)
 
