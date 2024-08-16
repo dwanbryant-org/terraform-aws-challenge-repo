@@ -39,7 +39,7 @@ jobs:
       - name: Terraform Plan
         id: tfplan
         run: |
-            terraform plan -out=tfplan
+            terraform plan -destroy -out=tfplan
 
       - name: Show Terraform Plan
         id: plan
