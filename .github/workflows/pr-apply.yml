@@ -41,4 +41,4 @@ jobs:
           path: .
 
       - name: Terraform Apply
-        run: terraform destroy tfplan
+        run: terraform apply tfplan
